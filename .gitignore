@@ -1,0 +1,7 @@
+.idea/
+venv/
+*.pem
+secret_key
+KEYS/
+.DS_Store
+app/__pycache__/
