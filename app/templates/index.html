@@ -1,13 +1,5 @@
 {% extends "base/base.html" %}
 
-{% block tour %}
-<div class="tourposter" id="tourposter">
-    <a href="https://www.eventbrite.co.uk/e/danc-friends-ep-launch-party-at-mansion-tickets-50883382567" data-toggle="tooltip" title="Buy Tickets!" ><img  src="{{ url_for('static', filename='img/mansion_poster.jpg')}}" > </a>
-    <div class="arrow bounce" id="arrow"> <a  href="#bio" ><i class=" fa fa-angle-double-down"> </i> </a></div>
-</div>
-
-{% endblock %}
-
 {% block content %}
 <header id ="bio">
 	    <div class="container">
@@ -50,7 +42,9 @@
         </div>
 	</header>
 {% endblock %}
+{% events %}
 
+{% endblock %}
 {% block music %}
 	<section id="music" class="music">
         <div class="container">
@@ -102,12 +96,4 @@
             </ul>
         </div>
     </section>
-{% endblock %}
-
-{% block footer %}
-    <footer>
-        <div class="container">
-            <p>&copy; 2018 DANC.</p>
-        </div>
-    </footer>
 {% endblock %}
