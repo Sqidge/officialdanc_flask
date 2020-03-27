@@ -13,10 +13,10 @@ with open(os.path.join(basedir, 'app/static/KEYS/aws.json')) as f:
 class Config(object):
     APP_root = basedir
     APP_STATIC = os.path.join(basedir, 'app/static')
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
-    AWS_ACCESS_KEY_ID = key['access_id']
-    AWS_SECRET_ACCESS_KEY = key['secret_key']
-    AWS_DEFAULT_REGION = 'eu-west-2'
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+    AWS_ACCESS_KEY_ID = key['AWS_ACCESS_KEY_ID']
+    AWS_SECRET_ACCESS_KEY = key['AWS_SECRET_ACCESS_KEY']
+    AWS_DEFAULT_REGION = key['AWS_DEFAULT_REGION']
     boto_sess = Session(
         region_name=AWS_DEFAULT_REGION,
         aws_access_key_id=AWS_ACCESS_KEY_ID,
@@ -24,10 +24,11 @@ class Config(object):
     )
     DYNAMO_SESSION = boto_sess
     DYNAMO_CLIENT = boto3.resource('dynamodb')
-    DYNAMO_TABLE = DYNAMO_CLIENT.Table('officialdanc_events')
-    COGNITO_REGION ='eu-west-2'
-    COGNITO_USERPOOL_ID  = key['cognito_id']
-    AWS_COGNITO_DOMAIN = 'domain.com'
-    AWS_COGNITO_USER_POOL_ID = key['cognito_user_id']
-    AWS_COGNITO_USER_POOL_CLIENT_ID = key['cognito_user_client_id']
-    AWS_COGNITO_REDIRECT_URL = 'http://localhost:5000/auth/admin'
+    DYNAMO_TABLE = DYNAMO_CLIENT.Table(key['DYNAMO_TABLE'])
+    COGNITO_REGION = key['COGNITO_REGION']
+    COGNITO_USERPOOL_ID = key['COGNITO_USERPOOL_ID']
+    AWS_COGNITO_DOMAIN = key['AWS_COGNITO_DOMAIN']
+    AWS_COGNITO_USER_POOL_ID = key['AWS_COGNITO_USER_POOL_ID']
+    AWS_COGNITO_USER_POOL_CLIENT_ID = key['AWS_COGNITO_USER_POOL_CLIENT_ID']
+    AWS_COGNITO_USER_POOL_CLIENT_SECRET = key['AWS_COGNITO_USER_POOL_CLIENT_SECRET']
+    AWS_COGNITO_REDIRECT_URL = key['AWS_COGNITO_REDIRECT_URL']
