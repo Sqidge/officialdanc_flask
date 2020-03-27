@@ -1,0 +1,47 @@
+{% extends "login_base.html" %}
+{% block head_css %}
+{{super()}}
+{% endblock %}
+{% block content %}
+{% include 'admin_nav.html' %}
+<div class="container">
+    <div class="row" style="padding-top:65px;">
+        <div class="col-6 ">
+            <h1><u>Events</u></h1>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Event</th>
+                    <th scope="col">Link</th>
+                    <th scope="col">Sold Out?</th>
+                    <th scope="col">Edit</th>
+                </tr>
+                </thead>
+                {% if events %}
+                <tbody>
+                {% for ev in events | sort(attribute='date') %}
+
+                <tr>
+                    <th scope="row">{{ev['timestamp']|datetimeformat}}</th>
+                    <td scope="row">{{ev['venue']}}</td>
+                    <td>{{ev['link']}}</td>
+                    <td>{{ev['sold_out']}}</td>
+                    <td><a href="{{url_for('auth.edit_event', id=ev.id)}}" class="btn btn-dark">Edit</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+                {% endif %}
+            </table>
+            {% for category, message in get_flashed_messages(with_categories=True) %}
+                <div class="alert alert-{{category}}">{{message}}</div>
+            {% endfor %}
+            <a href="/auth/new_event" class="btn btn-dark">New Event</a>
+        </div>
+        <div class="col-6">
+            <h1><u>Banner</u></h1>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

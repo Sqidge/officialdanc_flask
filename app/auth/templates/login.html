@@ -1,0 +1,57 @@
+{% extends "login_base.html" %}
+{% block head_css %}
+ {{super()}}
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row justify-content-start full_height" >
+       <div class="col-3" id="login_col">
+           <div class="login_form" style="text-align:center;">
+                <h3>Log in to continue.</h3>
+               {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                    <ul class=flashes>
+                    {% for message in messages %}
+                      <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                  {% endif %}
+                {% endwith %}
+                <form action="" method="post" novalidate>
+                    <p>
+                        {{ form.hidden_tag() }}
+                        {{ form.username}}<br>
+                        {% for error in form.username.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </p>
+                    <p>
+
+                        {% if type =='Login' %}
+                            {{ form.password }}<br>
+                            {% for error in form.password.errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                        {% elif type =='Change' %}
+                            <p>{{ form.prev_password }}<br></p>
+                            <p>{{ form.new_password }}<br></p>
+                            <p> {{ form.confirm_password }}<br></p>
+                            {% for error in form.prev_password.errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                        {% endif %}
+
+                    </p>
+                    <p>{{ form.submit() }}</p>
+                    <p><a href="/" class="btn btn-dark">Return</a></p>
+                </form>
+           </div>
+       </div>
+      <div class="col-9">
+          <div id="login_img">
+                Temp
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock %}
