@@ -55,6 +55,7 @@ def login():
     client = boto3.client('cognito-idp')
     if l_form.validate_on_submit():
         result = request.form.to_dict()
+
         try:
             u = Cognito(current_app.config['AWS_COGNITO_USER_POOL_ID'],
                         current_app.config['AWS_COGNITO_USER_POOL_CLIENT_ID'],

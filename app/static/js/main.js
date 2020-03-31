@@ -1,5 +1,5 @@
 
-$("nav").find("a.internal").click(function(e) {
+$("nav").find("a.navbar-link").click(function(e) {
     e.preventDefault();
     var divider = parseFloat($('.content_divider').css('height'),10);
     var section = $(this).attr("href");

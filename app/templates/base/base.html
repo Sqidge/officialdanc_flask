@@ -7,29 +7,34 @@
     {% block head_css %}
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome.min.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/solid.min.css') }}">
-     <link rel="stylesheet" href="{{ url_for('static', filename='css/brands.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/solid.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/brands.min.css') }}">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css' )}}">
+    <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 991px)"
+          href="{{ url_for('static', filename='css/navbar_mobile.css') }}"/>
+    <link rel="stylesheet" type="text/css" media="screen and (min-device-width: 992px)"
+          href="{{ url_for('static', filename='css/navbar.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     {% endblock %}
 
 </head>
 <body>
-<div id="navbar">
+<!--<div id="navbar">-->
     <!--
    Nav Bar
    -->
     {% include 'base/navbar.html' %}
-</div>
+<!--</div>-->
 
-<div class="content">
+<div class="content d-md-flex">
     <!--Content-->
-    {% block content %}{% endblock %}
+        {% block content %}{% endblock %}
       <div class="push"></div>
 </div>
 <div id="footer">

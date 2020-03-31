@@ -6,21 +6,25 @@ from wtforms.validators import DataRequired
 
 
 class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()], render_kw={"placeholder": "Enter Username"})
-    password = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "Enter Password"})
-    submit = SubmitField('Sign In', render_kw={"class": "btn btn-primary", "value": "Login"})
+    username = StringField('Username', validators=[DataRequired()], render_kw={"class": "form-control",
+                                                                               "placeholder": "Enter Username"})
+    password = PasswordField('Password', validators=[DataRequired()], render_kw={"class": "form-control",
+                                                                                 "placeholder": "Enter Password"})
+    submit = SubmitField('Sign In', render_kw={
+        "class": "btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2", "value": "Login"})
 
 
 class ChangePasswordForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()],
                            render_kw={"placeholder": "Enter Username"})
-    prev_password = PasswordField('Password', validators=[DataRequired()],
-                                  render_kw={"placeholder": "Enter Current Password"})
-    new_password = PasswordField('Password', validators=[DataRequired()],
-                                 render_kw={"placeholder": "Enter New Password"})
-    confirm_password = PasswordField('Password', validators=[DataRequired()],
-                                     render_kw={"placeholder": "Confirm New Password"})
-    submit = SubmitField('Change Password', render_kw={"class": "btn btn-primary", "value": "Change"})
+    prev_password = PasswordField('Previous Password', validators=[DataRequired()],
+                                  render_kw={"class": "form-control", "placeholder": "Enter Current Password"})
+    new_password = PasswordField('New Password', validators=[DataRequired()],
+                                 render_kw={"class": "form-control", "placeholder": "Enter New Password"})
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired()],
+                                     render_kw={"class": "form-control", "placeholder": "Confirm New Password"})
+    submit = SubmitField('Change Password', render_kw={
+        "class": "btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2", "value": "Change Password"})
 
 
 class EditEvent(FlaskForm):

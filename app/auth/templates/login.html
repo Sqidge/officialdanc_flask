@@ -1,57 +1,61 @@
 {% extends "login_base.html" %}
 {% block head_css %}
- {{super()}}
+{{super()}}
 {% endblock %}
 {% block content %}
-<div class="container">
-  <div class="row justify-content-start full_height" >
-       <div class="col-3" id="login_col">
-           <div class="login_form" style="text-align:center;">
-                <h3>Log in to continue.</h3>
-               {% with messages = get_flashed_messages() %}
-                  {% if messages %}
-                    <ul class=flashes>
-                    {% for message in messages %}
-                      <li>{{ message }}</li>
-                    {% endfor %}
-                    </ul>
-                  {% endif %}
-                {% endwith %}
-                <form action="" method="post" novalidate>
-                    <p>
-                        {{ form.hidden_tag() }}
-                        {{ form.username}}<br>
-                        {% for error in form.username.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
-                        {% endfor %}
-                    </p>
-                    <p>
+<div class="container-fluid">
+    <div class="row no-gutter">
+        <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+        <div class="col-md-8 col-lg-6">
+            <div class="login d-flex align-items-center py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9 col-lg-8 mx-auto">
+                            <h3 class="login-heading mb-4">Log in to continue.</h3>
+                            {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                            <ul class=flashes>
+                                {% for message in messages %}
+                                <li>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                            {% endwith %}
+                            <form action="" method="post" novalidate>
+                                {{ form.hidden_tag() }}
+                                <div class="form-label-group">
+                                    {{ form.username}}
+                                    {{ form.username.label }}
+                                </div>
+                                {% if type =='Login' %}
+                                <div class="form-label-group">
+                                    {{ form.password }}
+                                    {{ form.password.label }}
+                                </div>
+                                {% elif type =='Change' %}
+                                <div class="form-label-group">
+                                    {{ form.prev_password }}
+                                    {{ form.prev_password.label }}
+                                </div>
+                                <div class="form-label-group">
+                                    {{ form.new_password }}
+                                    {{ form.new_password.label }}
+                                </div>
+                                <div class="form-label-group">
+                                    {{ form.confirm_password }}
+                                    {{ form.confirm_password.label }}
+                                </div>
+                                {% endif %}
 
-                        {% if type =='Login' %}
-                            {{ form.password }}<br>
-                            {% for error in form.password.errors %}
-                                <span style="color: red;">[{{ error }}]</span>
-                            {% endfor %}
-                        {% elif type =='Change' %}
-                            <p>{{ form.prev_password }}<br></p>
-                            <p>{{ form.new_password }}<br></p>
-                            <p> {{ form.confirm_password }}<br></p>
-                            {% for error in form.prev_password.errors %}
-                                <span style="color: red;">[{{ error }}]</span>
-                            {% endfor %}
-                        {% endif %}
 
-                    </p>
-                    <p>{{ form.submit() }}</p>
-                    <p><a href="/" class="btn btn-dark">Return</a></p>
-                </form>
-           </div>
-       </div>
-      <div class="col-9">
-          <div id="login_img">
-                Temp
-          </div>
-      </div>
-  </div>
+                                <p>{{ form.submit() }}</p>
+                                <p><a href="/" class="btn btn-lg btn-dark btn-block btn-login text-uppercase font-weight-bold mb-2">Return</a></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

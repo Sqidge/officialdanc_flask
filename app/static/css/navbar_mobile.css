@@ -1,5 +1,5 @@
 nav {
-   min-height: 72px;
+   min-height: 40px;
    background-color:#0F0D23;
 
 }
@@ -7,4 +7,4 @@ nav {
     color:white !important;
 }
 
-#spotify_frame { width:200px; height:56px }
+#spotify_frame { width:145px; height:56px }
