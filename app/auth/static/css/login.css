@@ -9,9 +9,11 @@
 }
 
 .bg-image {
-  background-image: url('https://source.unsplash.com/WEQbe2jBg40/600x1200');
+  background-image: url('/static/img/admin_logo.jpg');
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgb(17,15,31);
 }
 
 .login-heading {

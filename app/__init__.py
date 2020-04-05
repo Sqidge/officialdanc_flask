@@ -1,7 +1,7 @@
 import logging
-from datetime import datetime
-from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
+from datetime import datetime
+from logging.handlers import RotatingFileHandler
 from flask import Flask
 from flask_bootstrap import Bootstrap
 from config import Config
@@ -15,7 +15,8 @@ login.login_view = 'auth.login'
 bootstrap = Bootstrap()
 dynamo = Dynamo()
 aws_auth = AWSCognitoAuthentication()
-cogauth = CognitoAuth ()
+cogauth = CognitoAuth()
+
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -42,6 +43,7 @@ def create_app(config_class=Config):
     @app.template_filter('datetimeformat')
     def datetimeformat(value):
         return datetime.fromtimestamp(value).strftime('%d/%m/%Y %-I%p')
+
     @app.template_filter('datetimeHMformat')
     def datetimeHMformat(value):
         dt = datetime.fromtimestamp(value)

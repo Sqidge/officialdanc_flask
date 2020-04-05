@@ -1,18 +1,13 @@
 import time
-from datetime import datetime, timedelta
-from decimal import Decimal
-
 import boto3
+from datetime import datetime
 from boto3.dynamodb.conditions import Key, Attr
 from flask_login import current_user, login_user, logout_user
 from flask import redirect, url_for, render_template, request, flash, current_app
 from werkzeug.urls import url_parse
-
 from app.auth import bp
 from app.auth.forms import LoginForm, ChangePasswordForm, EditEvent, NewEvent
 from flask_login import login_required
-from warrant import Cognito
-from warrant import exceptions as we
 
 CURRENT_USER = None
 
@@ -52,24 +47,34 @@ def login():
 
     l_form = LoginForm()
     c_form = ChangePasswordForm()
-    client = boto3.client('cognito-idp')
+    client = boto3.client('cognito-idp', region_name=current_app.config['AWS_DEFAULT_REGION'])
     if l_form.validate_on_submit():
         result = request.form.to_dict()
 
         try:
-            u = Cognito(current_app.config['AWS_COGNITO_USER_POOL_ID'],
-                        current_app.config['AWS_COGNITO_USER_POOL_CLIENT_ID'],
-                        username=result['username'])
+            tokens = client.initiate_auth(AuthFlow='USER_PASSWORD_AUTH',
+                                          ClientId=current_app.config['AWS_COGNITO_USER_POOL_CLIENT_ID'],
+                                          AuthParameters={'USERNAME': result['username'],
+                                                          'PASSWORD': result['password']})
+            if 'ChallengeName' in tokens:
+                if tokens['ChallengeName'] == 'NEW_PASSWORD_REQUIRED':
+                    c_form = ChangePasswordForm()
+                    c_form.username.data = result['username']
+                    return render_template('login.html', title='Sign In', type='Change', form=c_form)
 
-            u.authenticate(password=result['password'])
-            CURRENT_USER = Cog_User(True, True, result['username'], u.access_token, u.id_token, u.token_type)
+            CURRENT_USER = Cog_User(True, True, result['username'],
+                                    tokens['AuthenticationResult']['AccessToken'],
+                                    tokens['AuthenticationResult']['IdToken'],
+                                    tokens['AuthenticationResult']['TokenType'])
             login_user(CURRENT_USER)
             next_page = request.args.get('next')
             if not next_page or url_parse(next_page).netloc != '':
                 next_page = url_for('auth.admin')
             return redirect(next_page)
-        except we.ForceChangePasswordException:
-            c_form = ChangePasswordForm()
+        except client.exceptions.UserNotFoundException:
+            flash('Invalid username or password')
+            return redirect(url_for('auth.login'))
+        except client.exceptions.PasswordResetRequiredException as PSRE:
             c_form.username.data = result['username']
             return render_template('login.html', title='Sign In', type='Change', form=c_form)
         except client.exceptions.NotAuthorizedException as NAE:
@@ -81,18 +86,34 @@ def login():
             flash('Invalid username or password')
             return render_template('login.html', title='Sign In', type='Change', form=c_form)
         try:
-            u = Cognito(current_app.config['AWS_COGNITO_USER_POOL_ID'],
-                        current_app.config['AWS_COGNITO_USER_POOL_CLIENT_ID'],
-                        client_secret=current_app.config['AWS_COGNITO_USER_POOL_CLIENT_SECRET'],
-                        username=result['username'])
+            access_token = None
+            tokens = client.initiate_auth(AuthFlow='USER_PASSWORD_AUTH',
+                                          ClientId=current_app.config['AWS_COGNITO_USER_POOL_CLIENT_ID'],
+                                          AuthParameters={'USERNAME': result['username'],
+                                                          'PASSWORD': result['prev_password']})
+            if 'ChallengeName' in tokens:
+                if tokens['ChallengeName'] == 'NEW_PASSWORD_REQUIRED':
+                    response = client.respond_to_auth_challenge(
+                        ClientId=current_app.config['AWS_COGNITO_USER_POOL_CLIENT_ID'],
+                        ChallengeName=tokens['ChallengeName'],
+                        Session=tokens['Session'],
+                        ChallengeResponses={'NEW_PASSWORD': result['new_password'],
+                                            'USERNAME': result['username']})
+                    access_token = response['AuthenticationResult']['AccessToken']
 
-            u.new_password_challenge(result['prev_password'], result['new_password'])
-            CURRENT_USER = Cog_User(True, True, result['username'], u.access_token, u.id_token, u.token_type)
-            login_user(CURRENT_USER)
-            next_page = request.args.get('next')
-            if not next_page or url_parse(next_page).netloc != '':
-                next_page = url_for('auth.admin')
-            return redirect(next_page)
+            if access_token:
+                CURRENT_USER = Cog_User(True, True, result['username'],
+                                        access_token['AuthenticationResult']['AccessToken'],
+                                        access_token['AuthenticationResult']['IdToken'],
+                                        access_token['AuthenticationResult']['TokenType'])
+                login_user(CURRENT_USER)
+                next_page = request.args.get('next')
+                if not next_page or url_parse(next_page).netloc != '':
+                    next_page = url_for('auth.admin')
+                return redirect(next_page)
+        except client.exceptions.InvalidPasswordException:
+            flash('Invalid Password!')
+            return render_template('login.html', title='Sign In', type='Change', form=c_form)
         except Exception as e:
             flash('Unable to update Password!')
             return render_template('login.html', title='Sign In', type='Change', form=c_form)
@@ -100,6 +121,7 @@ def login():
 
 
 TOTAL_ITEMS = 0
+
 @bp.route('/admin')
 # @login_required
 def admin():

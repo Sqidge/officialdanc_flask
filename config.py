@@ -5,7 +5,7 @@ import json
 from boto3.session import Session
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-load_dotenv(os.path.join(basedir, '.env'))
+load_dotenv(os.path.join(basedir, '.flaskenv'))
 with open(os.path.join(basedir, 'app/static/KEYS/aws.json')) as f:
     key = json.loads(f.read())
 
@@ -23,7 +23,9 @@ class Config(object):
         aws_secret_access_key=AWS_SECRET_ACCESS_KEY
     )
     DYNAMO_SESSION = boto_sess
-    DYNAMO_CLIENT = boto3.resource('dynamodb')
+    DYNAMO_CLIENT = boto3.resource('dynamodb', region_name=AWS_DEFAULT_REGION,
+                                   aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                   aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
     DYNAMO_TABLE = DYNAMO_CLIENT.Table(key['DYNAMO_TABLE'])
     COGNITO_REGION = key['COGNITO_REGION']
     COGNITO_USERPOOL_ID = key['COGNITO_USERPOOL_ID']
