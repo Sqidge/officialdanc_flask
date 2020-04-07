@@ -1,12 +1,11 @@
 
 $("nav").find("a.navbar-link").click(function(e) {
     e.preventDefault();
-    var divider = parseFloat($('.content_divider').css('height'),10);
     var section = $(this).attr("href");
     var diff =0
     if (section !== '#tourposter') {
         var section_top = $(section).offset().top;
-        diff = section_top - divider - 10
+        diff = section_top - 10
     }
     $("html, body").animate({
         scrollTop: diff

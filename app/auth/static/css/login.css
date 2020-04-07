@@ -10,7 +10,7 @@
 
 .bg-image {
   background-image: url('/static/img/admin_logo.jpg');
-  background-size: cover;
+  background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-color: rgb(17,15,31);
@@ -128,14 +128,18 @@
     border-width: 2px;
     border-style: solid;
 }
-
+.alert-message {
+    border: 2px solid darkblue;
+    background-color: aliceblue;
+    color: black;
+}
 .alert-error {
-    border-color:darkred;
-    background-color: red;
+    border: 2px solid darkred;
+    background-color: indianred;
     color: white;
 }
 .alert-success {
-    border-color: darkgreen;
+    border-color: 2px solid darkgreen;
     background: lightgreen;
     color: black;
 }

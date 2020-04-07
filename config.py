@@ -13,6 +13,10 @@ with open(os.path.join(basedir, 'app/static/KEYS/aws.json')) as f:
 class Config(object):
     APP_root = basedir
     APP_STATIC = os.path.join(basedir, 'app/static')
+    EDITS_PATH = os.path.join(basedir, 'app/static/edits/edits.json')
+    EDITS_URL = '/auth/edits'
+    EDITS_PREVIEW = False
+    EDITS_SUMMERNOTE = True
     SECRET_KEY = os.environ.get('SECRET_KEY')
     AWS_ACCESS_KEY_ID = key['AWS_ACCESS_KEY_ID']
     AWS_SECRET_ACCESS_KEY = key['AWS_SECRET_ACCESS_KEY']

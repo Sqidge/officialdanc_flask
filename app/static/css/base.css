@@ -2,6 +2,7 @@ html, body {
   height: 100%;
   margin: 0;
   font-family: 'Audiowide', cursive;
+   background-color:#0F0D23!important;
 }
 body {
   /* Margin bottom by footer height */

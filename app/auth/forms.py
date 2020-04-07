@@ -32,13 +32,14 @@ class EditEvent(FlaskForm):
                       render_kw={"readonly": "readonly", "class": "uneditable_input"})
     orig_date = DateField('Original Date', validators=[DataRequired()], format="%d/%m/%Y %H:%M",
                           render_kw={"readonly": "readonly", "class": "uneditable_input"})
-    date = DateField('Date', validators=[DataRequired()], format="%d/%m/%Y %H:%M",
+    date = DateField('New Date', validators=[DataRequired()], format="%d/%m/%Y %H:%M",
                      render_kw={"placeholder": "eg 01/01/2020 18:00"})
     venue = StringField('Venue', validators=[DataRequired()],
                         render_kw={"placeholder": "Venue details"})
     link = StringField('Link', validators=[DataRequired()],
                        render_kw={"placeholder": "Ticket page"})
-    sold_out = BooleanField('Sold Out', validators=[DataRequired()], )
+    on_the_door = BooleanField('On The Door?', validators=[DataRequired()], )
+    sold_out = BooleanField('Sold Out?', validators=[DataRequired()], )
     submit = SubmitField('Save', render_kw={"class": "btn btn-primary", "value": "Save"})
     delete = SubmitField('Delete', render_kw={"class": "btn btn-danger", "value": "Delete"})
 
@@ -52,5 +53,6 @@ class NewEvent(FlaskForm):
                         render_kw={"placeholder": "Venue details"})
     link = StringField('Link', validators=[DataRequired()],
                        render_kw={"placeholder": "Ticket page"})
-    sold_out = BooleanField('Sold Out', validators=[DataRequired()], )
+    on_the_door = BooleanField('On The Door?', validators=[DataRequired()], )
+    sold_out = BooleanField('Sold Out?', validators=[DataRequired()], )
     submit = SubmitField('Save', render_kw={"class": "btn btn-primary", "value": "Save"})

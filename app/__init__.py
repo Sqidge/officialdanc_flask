@@ -1,6 +1,6 @@
 import logging
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 from logging.handlers import RotatingFileHandler
 from flask import Flask
 from flask_bootstrap import Bootstrap
@@ -9,6 +9,7 @@ from flask_login import LoginManager
 from flask_dynamo import Dynamo
 from flask_awscognito import AWSCognitoAuthentication
 from flask_cognito import CognitoAuth
+from app.flask_edits import Edits
 
 login = LoginManager()
 login.login_view = 'auth.login'
@@ -16,7 +17,7 @@ bootstrap = Bootstrap()
 dynamo = Dynamo()
 aws_auth = AWSCognitoAuthentication()
 cogauth = CognitoAuth()
-
+edits = Edits()
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -28,6 +29,7 @@ def create_app(config_class=Config):
     dynamo.init_app(app)
     aws_auth.init_app(app)
     cogauth.init_app(app)
+    edits.init_app(app)
 
     from app.errors import bp as errors_bp
     app.register_blueprint(errors_bp)
@@ -42,11 +44,11 @@ def create_app(config_class=Config):
 
     @app.template_filter('datetimeformat')
     def datetimeformat(value):
-        return datetime.fromtimestamp(value).strftime('%d/%m/%Y %-I%p')
+        return datetime.fromtimestamp(value, tz=timezone.utc).strftime('%d/%m/%Y %-I:%M%p')
 
     @app.template_filter('datetimeHMformat')
     def datetimeHMformat(value):
-        dt = datetime.fromtimestamp(value)
+        dt = datetime.fromtimestamp(value, tz=timezone.utc)
         dts = dt.strftime('%Y-%m-%d %H:%M')
         return dts
 
