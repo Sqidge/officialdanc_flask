@@ -5,3 +5,7 @@ secret_key
 KEYS/
 .DS_Store
 app/__pycache__/
+*.db
+logs/
+__pycache__/
+.flaskenv

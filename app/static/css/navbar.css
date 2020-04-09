@@ -1,32 +1,10 @@
-.navbar {
-   min-height: 80px;
+nav {
+   min-height: 72px;
    background-color:#0F0D23;
 
 }
-
-.navbar-brand {
-    padding-left:10%;
-
-}
-/*
-.navbar-collapse{
-    padding-left:-15%;
-}
-*/
-
-.navbar-brand {
+.navbar-link {
     color:white !important;
 }
-.navbar-brand > img {
-    height:75px;
-    width:195px;
-}
-/*.navbar-nav{
-    margin-left:30%;
-}*/
-.navright{
-    padding-left:40%;
-}
-.nav-item > a{
-   color:white !important;
-}
+
+#spotify_frame { width:200px; height:56px }
