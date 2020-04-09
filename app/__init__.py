@@ -20,39 +20,39 @@ cogauth = CognitoAuth()
 edits = Edits()
 
 def create_app(config_class=Config):
-    app = Flask(__name__)
+    application = Flask(__name__)
 
-    app.config.from_object(config_class)
+    application.config.from_object(config_class)
 
-    login.init_app(app)
-    bootstrap.init_app(app)
-    dynamo.init_app(app)
-    aws_auth.init_app(app)
-    cogauth.init_app(app)
-    edits.init_app(app)
+    login.init_app(application)
+    bootstrap.init_app(application)
+    dynamo.init_app(application)
+    aws_auth.init_app(application)
+    cogauth.init_app(application)
+    edits.init_app(application)
 
     from app.errors import bp as errors_bp
-    app.register_blueprint(errors_bp)
+    application.register_blueprint(errors_bp)
 
-    with app.app_context():
+    with application.app_context():
         from app.auth import bp as auth_bp
-        app.register_blueprint(auth_bp, url_prefix='/auth')
+        application.register_blueprint(auth_bp, url_prefix='/auth')
 
-    with app.app_context():
+    with application.app_context():
         from app.main import bp as main_bp
-        app.register_blueprint(main_bp)
+        application.register_blueprint(main_bp)
 
-    @app.template_filter('datetimeformat')
+    @application.template_filter('datetimeformat')
     def datetimeformat(value):
         return datetime.fromtimestamp(value, tz=timezone.utc).strftime('%d/%m/%Y %-I:%M%p')
 
-    @app.template_filter('datetimeHMformat')
+    @application.template_filter('datetimeHMformat')
     def datetimeHMformat(value):
         dt = datetime.fromtimestamp(value, tz=timezone.utc)
         dts = dt.strftime('%Y-%m-%d %H:%M')
         return dts
 
-    if not app.debug and not app.testing:
+    if not application.debug and not application.testing:
         if not os.path.exists('logs'):
             os.mkdir('logs')
         file_handler = RotatingFileHandler('logs/officaldanc.log',
@@ -61,9 +61,9 @@ def create_app(config_class=Config):
             '%(asctime)s %(levelname)s: %(message)s '
             '[in %(pathname)s:%(lineno)d]'))
         file_handler.setLevel(logging.INFO)
-        app.logger.addHandler(file_handler)
+        application.logger.addHandler(file_handler)
 
-        app.logger.setLevel(logging.INFO)
-        app.logger.info('Microblog startup')
+        application.logger.setLevel(logging.INFO)
+        application.logger.info('Microblog startup')
 
-    return app
+    return application

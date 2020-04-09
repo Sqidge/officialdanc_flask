@@ -38,5 +38,6 @@ def index():
 
 @bp.route('/robots.txt')
 @bp.route('/sitemap.xml')
+@bp.route('/favicon.ico')
 def static_from_root():
     return send_from_directory(current_app.config['APP_STATIC'], request.path[1:])

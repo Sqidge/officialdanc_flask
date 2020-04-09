@@ -12,6 +12,9 @@ footer{
   border-radius: 100%;
   color: white;
 }
+i {
+    font-style:normal;
+}
 ul.list-social li.social-youtube a {
   background-color: #770202;
 }
