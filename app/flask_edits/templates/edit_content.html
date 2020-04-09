@@ -12,16 +12,16 @@
                 <div class="card-header">Editable Pages</div>
                 <div class="list-group">
                     {% for page, regions in edits.items() %}
-                    <li class="list-group list-group-flush" style="padding:1em;">
-                        <a href="{{ url_for('edits.index', page=page) }}" class="list-group-item-action">
+                        <a href="{{ url_for('edits.index', page=page) }}" class="list-group-item list-group-flush list-group-item-action" style="display:flex; flex-grow:1; flex-shrink:1;min-height:inherit;">
 
                         {{ page }}
-                        <span class="badge" style="float:right">{{ regions.keys()|length }}</span>
+                        <span class="badge" style="position:absolute; right:10%; top: 25%;">{{ regions.keys()|length }}</span>
                     </a>
-                    </li>
 
                     {% endfor %}
+
                 </div>
+                <a href="/auth/admin" class="btn btn-dark" style="marging-top:10px;">Return</a>
             </div>
         </div>
 

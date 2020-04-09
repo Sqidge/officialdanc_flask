@@ -5,7 +5,7 @@ $("nav").find("a.navbar-link").click(function(e) {
     var diff =0
     if (section !== '#tourposter') {
         var section_top = $(section).offset().top;
-        diff = section_top - 10
+        diff = section_top - 50
     }
     $("html, body").animate({
         scrollTop: diff
@@ -27,4 +27,17 @@ $("div.arrow").find("a").click(function(e) {
 
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
+    $('#events_table').DataTable({
+        "paging": true,
+        "ordering": false,
+        "info":     false,
+        "searching": false,
+        "lengthChange": false,
+        "scrollX":false,
+        "scrollY":false,
+        "fnDrawCallback": function(oSettings) {
+        if (oSettings._iDisplayLength > oSettings.fnRecordsDisplay()) {
+            $(oSettings.nTableWrapper).find('.dataTables_paginate').hide();
+        }
+    }});
 });
