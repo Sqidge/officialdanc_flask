@@ -1,0 +1,14 @@
+{
+  "name": "OfficialDanc showcase",
+  "short_name": "OfficialDanc 😎",
+  "description": "Online presence for OfficialDanc",
+  "start_url": "/",
+  "background_color": "#0F0D23",
+  "theme_color": "#0F0D23",
+  "display": "browser",
+  "icons": [ {
+      "src": "img/admin_logo.jpg",
+      "type": "image/png",
+      "sizes": "512x512"
+    }]
+}

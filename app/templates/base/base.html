@@ -1,62 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162902777-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-162902777-1');
+
+    </script>
     <title>DANC</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Description" content="Author: C.J. Clarkson, OfficialDanc online presence">
 
     {% block head_css %}
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='lib/device-mockups.min.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css' )}}">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='img/icon.ico')}}">
+    <link rel="icon" href="{{ url_for('static', filename='img/icon.ico')}}">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json')}}" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.min.css') }}">
+    <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 991px)"
+          href="{{ url_for('static', filename='css/navbar_mobile.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" media="screen and (min-device-width: 992px)"
+          href="{{ url_for('static', filename='css/navbar.min.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.min.css') }}">
+
 
     {% endblock %}
 
 </head>
 <body>
+<!--<div id="navbar">-->
+<!--
+Nav Bar
+-->
+{% include 'base/navbar.html' %}
+<!--</div>-->
 
-<div class="content-container" >
-    <div id="navbar">
-     <!--
-    Nav Bar
-    -->
-    {% include 'base/navbar.html' %}
-    </div>
+<div class="content d-md-flex">
+    <!--Content-->
+    {% block content %}{% endblock %}
+    <div class="push"></div>
+</div>
+<div id="footer">
 
-     <div id="content">
-    <!--
-    Content
-    -->
+    <!--Footer-->
+    {% include 'base/footer.html' %}
 
-    {% block tour %}{% endblock %}
-
-{% block content %}{% endblock %}
-
-{% block music %}{% endblock %}
-
-{% block subscribe %}{% endblock %}
-    </div>
-
-    <div id="footer">
-      <!--
-        Footer
-        -->
-        {% include 'base/footer.html' %}
-    </div>
 </div>
 </body>
-    <script src="{{ url_for('static', filename='js/popper.js' )}}"></script>
 
-    <!-- jQuery -->
-    <script src="{{ url_for('static', filename='js/jquery.min.js' )}}"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" >
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/solid.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/brands.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.min.css') }}">
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js' )}}" ></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" async></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" async></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" async></script>
+<script src="{{ url_for('static', filename='js/lazysizes.min.js')}}" async></script>
+<script src="{{ url_for('static', filename='js/main.js' )}}" async></script>
 
-    <!-- Plugin JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-
-    <!-- Theme JavaScript -->
-    <script src="{{ url_for('static', filename='js/main.js' )}}"></script>
 </html>

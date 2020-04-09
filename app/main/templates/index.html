@@ -1,0 +1,158 @@
+{% extends "base/base.html" %}
+
+{% block head_css %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('main.static', filename='css/index.css' )}}">
+<style>
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    {% if banner %}
+
+    <div class="poster" id="tourposter">
+
+        <div class="arrow bounce" id="arrow"><a href="#events" aria-label="arrows"><i
+                class=" fa fa-angle-double-down"> </i> </a></div>
+    </div>
+    {% endif %}
+    <!-- EVENTS -->
+
+    <div id="events" class="events">
+        <div class="w-100 mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden"
+             style="min-height:100vh;">
+            <div>
+                <h2 class="display-5" style="margin-bottom:0px;"><span class="card_header">Events</span></h2>
+            </div>
+            <div class="bg-light shadow-sm mx-auto table-responsive"
+                 style=" border-radius: 21px; overflow-x:hidden;">
+                {% if events %}
+                    <table class="table" id="events_table">
+                {% else %}
+                    <table class="table">
+                {% endif %}
+                        <thead>
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col" style="border-top: 1px solid #f8f9fa">Event</th>
+                            <th scope="col" style="align:right">Link</th>
+                        </tr>
+                        </thead>
+                        {% if events %}
+                        <tbody>
+                        {% for ev in events | sort(attribute='date') %}
+
+                        <tr>
+                            <td scope="row" style="width:20%">{{ev['timestamp']|datetimeformat}}</td>
+                            <td scope="row" style="width:60%">{{ev['venue']}}</td>
+                            {% if ev['sold_out']%}
+                            <td style="20%">SOLD OUT!</td>
+                            {% elif ev['on_the_door'] %}
+                            <td style="20%">Buy on the door!</td>
+                            {% else %}
+                            <td style="width:20%"><a href="{{ev['link']}}" class="btn btn-dark"
+                                                     aria-label="Buy Tickets button"
+                                                     target="_blank" rel="noreferrer">Buy Tickets</a></td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+
+                    </table>
+                    {% else %}
+                </table>
+                <div class="row justify-content-center">
+                    <div class="col-md-4" style="text-align:center">
+                        <h2>Check back soon!</h2>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- BIO -->
+    <div class="events" id="bio">
+        <div class="w-100 mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center"
+             style="min-height:88vh; ">
+            <div>
+                <h2 class="display-5" style="margin-bottom:0px;"><span class="card_header">Bio</span></h2>
+            </div>
+            <div class="bg-light shadow-sm mx-auto text-black " style="min-height: inherit; border-radius: 21px;">
+                <div class="row justify-content-around bio ">
+                    <div class="col-10 offset-lg-1 col-lg-5">
+                        <img alt="profile picture" data-src="{{url_for('static', filename='img/profile.png')}}"
+                             class="lazyload" id="profile_pic"/>
+                        <h5 id="bio_text">
+                            {% editable bio %}
+                            DANC SOUND aka Danny Clarke is a bass producer/DJ from the United Kingdom.
+                            Influenced by the heavy bass sounds of Mad Decent / OWSLA artists,
+                            DANC’s ability to seamlessly mix break, house,dubstep and electro
+                            into hard hitting club-shakers has become a trademark of the cliche
+                            DANC x SOUND.
+                            {% endeditable %}
+                        </h5>
+                        <a href="{% editable Listen_now_soundcloud %} https://soundcloud.com/officialdanc/tracks {% endeditable %}"
+                           target="_blank" rel="noreferrer"
+                           class="btn btn-outline btn-xl page-scroll" style="border:1px black solid"
+                           aria-label="soundcloud link">Listen now!</a>
+                    </div>
+                    <div class="col-12 col-sm-10 offset-sm-1 col-md-10 offset-md-1 offset-lg-0 col-lg-5">
+                        {% if instagram_embedded %}
+                        {{ instagram_embedded | safe}}
+                        {% endif %}
+                        <div style="visibility:hidden">
+                            {% editable embedded_instagram %}
+
+                            {% endeditable %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MUSIC -->
+
+
+    <div class="events" id="music">
+        <div class="w-100 mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden"
+             style="min-height:88vh;">
+            <div>
+                <h2 class="display-5" style="margin-bottom:0px;"><span class="card_header">Music</span></h2>
+            </div>
+            <div class="bg-light shadow-sm mx-auto text-black"
+                 style="min-height: inherit; border-radius: 21px;">
+                <div class="row justify-content-around music">
+                    <div class="col-12 col-lg-4">
+                        <div class="my-3 py-3">
+                            <h2 class="display-5" style="color:black;">Soundcloud</h2>
+                        </div>
+
+                        <iframe title="soundcloud embedded player" width="100%" height="650" scrolling="no"
+                                frameborder="no" allow="autoplay"
+                                src="{% editable Embedded_Soundcloud %}https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/281228225&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true{% endeditable %}"></iframe>
+                    </div>
+                    <div class="vl"></div>
+                    <div class="col-12 col-lg-4 ">
+                        <div class="my-3 py-3">
+                            <h2 class="display-5" style="color:black;">Spotify</h2>
+                        </div>
+
+                        <iframe title="spotify embedded player"
+                                src="{% editable Embedded_Spotify %}https://open.spotify.com/embed/artist/5hJtAFH918vWEVXpz8N9y6{% endeditable %}"
+                                width="100%"
+                                height="650"
+                                frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

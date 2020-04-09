@@ -1,0 +1,54 @@
+footer{
+  background-color: #0F0D23;
+  color:white;
+  margin-top: 3vh;
+}
+ ul.list-social li  a{
+  display: block;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  font-size: 20px;
+  border-radius: 100%;
+  color: white;
+}
+i {
+    font-style:normal;
+}
+ul.list-social li.social-youtube a {
+  background-color: #770202;
+}
+ul.list-social li.social-youtube a:hover {
+  background-color: #ff0505;
+}
+ul.list-social li.social-instagram a {
+  background-color: #323232;
+}
+ul.list-social li.social-instagram a:hover {
+  background-color: #000000;
+}
+ul.list-social li.social-facebook a {
+  background-color: #3b5998;
+}
+ul.list-social li.social-facebook a:hover {
+  background-color: #344e86;
+}
+ul.list-social li.social-soundcloud a {
+  background-color: #dd4b39;
+}
+ul.list-social li.social-soundcloud a:hover {
+  background-color: #B43E2F;
+}
+ul.list-social li.social-spotify a {
+  background-color: #006622;
+}
+ul.list-social li.social-spotify a:hover {
+  background-color: #00cc44;
+}
+
+ul.list-social li.social-email a {
+  background-color: #323232;
+}
+ul.list-social li.social-email a:hover {
+  background-color: #000000;
+}
