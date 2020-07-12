@@ -5,7 +5,7 @@ import json
 from boto3.session import Session
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-load_dotenv(os.path.join(basedir, '.flaskenv'))
+load_dotenv(os.path.join(basedir, '.flaskenv'),verbose=True)
 with open(os.path.join(basedir, 'app/static/KEYS/aws.json')) as f:
     key = json.loads(f.read())
 
