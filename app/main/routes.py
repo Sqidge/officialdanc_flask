@@ -36,6 +36,10 @@ def index():
             instagram_html = result['html']
     return render_template('index.html', title='Home', events=get_events(), instagram_embedded=instagram_html, banner=True)
 
+@bp.route('/privacy')
+def privacy():
+    return render_template('privacy.html')
+
 @bp.route('/robots.txt')
 @bp.route('/sitemap.xml')
 @bp.route('/favicon.ico')
