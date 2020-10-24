@@ -27,14 +27,7 @@ def get_events():
 
 @bp.route('/')
 def index():
-    instagram_html = None
-    if EDITS:
-        instagramurl = "https://api.instagram.com/oembed?url=" + str(EDITS['index.html']['embedded_instagram']['edited'])
-        data = requests.get(url=instagramurl)
-        if data and data.status_code == 200:
-            result = json.loads(data.text)
-            instagram_html = result['html']
-    return render_template('index.html', title='Home', events=get_events(), instagram_embedded=instagram_html, banner=True)
+    return render_template('index.html', title='Home', events=get_events(), banner=True)
 
 @bp.route('/privacy')
 def privacy():
