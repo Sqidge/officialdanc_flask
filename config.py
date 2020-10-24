@@ -16,6 +16,7 @@ class Config(object):
     EDITS_PREVIEW = False
     EDITS_SUMMERNOTE = True
     SECRET_KEY = os.environ.get('SECRET_KEY')
+    
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
     AWS_DEFAULT_REGION = os.environ.get('AWS_DEFAULT_REGION')
@@ -28,6 +29,7 @@ class Config(object):
     DYNAMO_CLIENT = boto3.resource('dynamodb', region_name=AWS_DEFAULT_REGION,
                                    aws_access_key_id=AWS_ACCESS_KEY_ID,
                                    aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+    DYNAMO_TABLE = DYNAMO_CLIENT.Table(os.environ.get('DYNAMO_TABLE'))
     COGNITO_REGION = os.environ.get('COGNITO_REGION')
     COGNITO_USERPOOL_ID = os.environ.get('COGNITO_USERPOOL_ID')
     AWS_COGNITO_DOMAIN = os.environ.get('AWS_COGNITO_DOMAIN')
