@@ -6,9 +6,11 @@
   "background_color": "#0F0D23",
   "theme_color": "#0F0D23",
   "display": "browser",
-  "icons": [ {
+  "icons": [
+    {
       "src": "img/admin_logo.jpg",
       "type": "image/png",
       "sizes": "512x512"
-    }]
+    }
+  ]
 }

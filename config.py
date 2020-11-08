@@ -1,11 +1,11 @@
 import os
+
 import boto3
-from dotenv import load_dotenv
-import json
 from boto3.session import Session
+from dotenv import load_dotenv
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-load_dotenv(os.path.join(basedir, '.flaskenv'),verbose=True)
+load_dotenv(os.path.join(basedir, '.flaskenv'), verbose=True)
 
 
 class Config(object):
@@ -16,7 +16,7 @@ class Config(object):
     EDITS_PREVIEW = False
     EDITS_SUMMERNOTE = True
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    
+
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
     AWS_DEFAULT_REGION = os.environ.get('AWS_DEFAULT_REGION')

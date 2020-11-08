@@ -1,96 +1,113 @@
 {% extends "base/base.html" %}
 
 {% block content %}
-<header id ="bio">
-	    <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="header-content">
-                        <div class="header-content-inner">
-							<img src="{{url_for('static', filename='img/profile.JPG')}}" style="width:80%"/>
-                            <h2>DANC is a UK based up and coming producer/DJ. <br> His sound is 100% bass and his sets are a journey spanning from Trap, Dubstep, Grime, Hip-Hop, Future and Electro.</h2>
-                            <a href="#music" class="btn btn-outline btn-xl page-scroll">Listen now!</a>
-                        </div>
+<header id="bio">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="header-content">
+                    <div class="header-content-inner">
+                        <img src="{{url_for('static', filename='img/profile.JPG')}}" style="width:80%"/>
+                        <h2>DANC is a UK based up and coming producer/DJ. <br> His sound is 100% bass and his sets are a
+                            journey spanning from Trap, Dubstep, Grime, Hip-Hop, Future and Electro.</h2>
+                        <a class="btn btn-outline btn-xl page-scroll" href="#music">Listen now!</a>
                     </div>
                 </div>
-                <div class="col-sm-6">
-				<br>
-				<br>
-                    <div class="device-container">
-                        <div class="device-mockup iphone6_plus portrait gold">
-                            <div class="device">
-                                <div class="screen">
-                                   <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/Bdm7TVRFckW/" data-instgrm-version="8" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
-								   <div style="padding:8px;"> <div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:50.0% 0; text-align:center; width:100%;">
-								   <div style=" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzPf399fX1+bm5mzY9AMAAADiSURBVDjLvZXbEsMgCES5/P8/t9FuRVCRmU73JWlzosgSIIZURCjo/ad+EQJJB4Hv8BFt+IDpQoCx1wjOSBFhh2XssxEIYn3ulI/6MNReE07UIWJEv8UEOWDS88LY97kqyTliJKKtuYBbruAyVh5wOHiXmpi5we58Ek028czwyuQdLKPG1Bkb4NnM+VeAnfHqn1k4+GPT6uGQcvu2h2OVuIf/gWUFyy8OWEpdyZSa3aVCqpVoVvzZZ2VTnn2wU8qzVjDDetO90GSy9mVLqtgYSy231MxrY6I2gGqjrTY0L8fxCxfCBbhWrsYYAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div></div>
-								   <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">
-								   <a href="https://www.instagram.com/p/Bdm7TVRFckW/" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;"
-								   target="_blank">A post shared by 『D』『A』『N』『C』 (@officialdanc)</a> on
-								   <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2018-01-06T12:36:00+00:00">Jan 6, 2018 at 4:36am PST</time></p></div></blockquote>
-								   <script async defer src="https://www.instagram.com/static/bundles/EmbedSDK.js/a47c90939ce9.js"></script>
+            </div>
+            <div class="col-sm-6">
+                <br>
+                <br>
+                <div class="device-container">
+                    <div class="device-mockup iphone6_plus portrait gold">
+                        <div class="device">
+                            <div class="screen">
+                                <blockquote class="instagram-media" data-instgrm-captioned
+                                            data-instgrm-permalink="https://www.instagram.com/p/Bdm7TVRFckW/"
+                                            data-instgrm-version="8"
+                                            style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+                                    <div style="padding:8px;">
+                                        <div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:50.0% 0; text-align:center; width:100%;">
+                                            <div style=" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzPf399fX1+bm5mzY9AMAAADiSURBVDjLvZXbEsMgCES5/P8/t9FuRVCRmU73JWlzosgSIIZURCjo/ad+EQJJB4Hv8BFt+IDpQoCx1wjOSBFhh2XssxEIYn3ulI/6MNReE07UIWJEv8UEOWDS88LY97kqyTliJKKtuYBbruAyVh5wOHiXmpi5we58Ek028czwyuQdLKPG1Bkb4NnM+VeAnfHqn1k4+GPT6uGQcvu2h2OVuIf/gWUFyy8OWEpdyZSa3aVCqpVoVvzZZ2VTnn2wU8qzVjDDetO90GSy9mVLqtgYSy231MxrY6I2gGqjrTY0L8fxCxfCBbhWrsYYAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div>
+                                        </div>
+                                        <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">
+                                            <a href="https://www.instagram.com/p/Bdm7TVRFckW/"
+                                               style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;"
+                                               target="_blank">A post shared by 『D』『A』『N』『C』 (@officialdanc)</a> on
+                                            <time datetime="2018-01-06T12:36:00+00:00"
+                                                  style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;">Jan 6, 2018 at 4:36am PST
+                                            </time>
+                                        </p>
+                                    </div>
+                                </blockquote>
+                                <script async defer
+                                        src="https://www.instagram.com/static/bundles/EmbedSDK.js/a47c90939ce9.js"></script>
 
 
-								</div>
-                                <div class="button">
-                                    <!-- You can hook the "home button" to some JavaScript events or just remove it -->
-                                </div>
+                            </div>
+                            <div class="button">
+                                <!-- You can hook the "home button" to some JavaScript events or just remove it -->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-	</header>
+    </div>
+</header>
 {% endblock %}
 {% block music %}
-	<section id="music" class="music">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="section-heading">
-                        <h2>Music</h2>
-                        <hr>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-						<iframe width="100%" height="650" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/281228225&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-
-                </div>
-                <div class="vl"></div>
-                <div class="col-md-6">
-                        <iframe src="https://open.spotify.com/embed/album/7xtJNNBZdWPvP2QSO7ArmT" width="100%" height="650" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+<section class="music" id="music">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="section-heading">
+                    <h2>Music</h2>
+                    <hr>
                 </div>
             </div>
         </div>
-    </section>
+        <div class="row">
+            <div class="col-md-6">
+                <iframe allow="autoplay" frameborder="no" height="650" scrolling="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/281228225&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
+                        width="100%"></iframe>
+
+            </div>
+            <div class="vl"></div>
+            <div class="col-md-6">
+                <iframe allow="encrypted-media" allowtransparency="true" frameborder="0"
+                        height="650" src="https://open.spotify.com/embed/album/7xtJNNBZdWPvP2QSO7ArmT" width="100%"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
 
 {% block subscribe %}
-	<section id="contact" class="contact">
-        <div class="container">
-			<h2>Keep up to date!</h2>
-            <ul class="list-inline list-social">
-			<li class="social-youtube list-inline-item">
-                    <a href="https://www.youtube.com/channel/UCO0YNj-Vj_uVmB5KY5mXxmg/featured"><i class="fa fa-youtube"></i></a>
-                </li>
-                <li class="social-instagram list-inline-item">
-                    <a href="https://www.instagram.com/officialdanc/"><i class="fa fa-instagram"></i></a>
-                </li>
-                <li class="social-facebook list-inline-item">
-                    <a href="https://www.facebook.com/officialdanc/"><i class="fa fa-facebook"></i></a>
-                </li>
-                <li class="social-spotify list-inline-item">
-                    <a href="https://open.spotify.com/artist/2zmKcDMX4EqLe1hgdZ9TdP?si=t_mWoEQcSJe59Vp74GLGOQ"><i class="fa fa-spotify"></i></a>
-                </li>
-                <li class="social-soundcloud list-inline-item">
-                    <a href="https://soundcloud.com/officialdanc"><i class="fa fa-soundcloud"></i></a>
-                </li>
-				<li class="social-email list-inline-item">
-                    <a href="mailto:officialdancmusic@gmail.com."><i class="fa fa-envelope"></i></a>
-                </li>
-            </ul>
-        </div>
-    </section>
+<section class="contact" id="contact">
+    <div class="container">
+        <h2>Keep up to date!</h2>
+        <ul class="list-inline list-social">
+            <li class="social-youtube list-inline-item">
+                <a href="https://www.youtube.com/channel/UCO0YNj-Vj_uVmB5KY5mXxmg/featured"><i
+                        class="fa fa-youtube"></i></a>
+            </li>
+            <li class="social-instagram list-inline-item">
+                <a href="https://www.instagram.com/officialdanc/"><i class="fa fa-instagram"></i></a>
+            </li>
+            <li class="social-facebook list-inline-item">
+                <a href="https://www.facebook.com/officialdanc/"><i class="fa fa-facebook"></i></a>
+            </li>
+            <li class="social-spotify list-inline-item">
+                <a href="https://open.spotify.com/artist/2zmKcDMX4EqLe1hgdZ9TdP?si=t_mWoEQcSJe59Vp74GLGOQ"><i
+                        class="fa fa-spotify"></i></a>
+            </li>
+            <li class="social-soundcloud list-inline-item">
+                <a href="https://soundcloud.com/officialdanc"><i class="fa fa-soundcloud"></i></a>
+            </li>
+            <li class="social-email list-inline-item">
+                <a href="mailto:officialdancmusic@gmail.com."><i class="fa fa-envelope"></i></a>
+            </li>
+        </ul>
+    </div>
+</section>
 {% endblock %}

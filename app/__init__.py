@@ -2,14 +2,16 @@ import logging
 import os
 from datetime import datetime, timezone
 from logging.handlers import RotatingFileHandler
+
 from flask import Flask
-from flask_bootstrap import Bootstrap
-from config import Config
-from flask_login import LoginManager
-from flask_dynamo import Dynamo
 from flask_awscognito import AWSCognitoAuthentication
+from flask_bootstrap import Bootstrap
 from flask_cognito import CognitoAuth
+from flask_dynamo import Dynamo
+from flask_login import LoginManager
+
 from app.flask_edits import Edits
+from config import Config
 
 login = LoginManager()
 login.login_view = 'auth.login'
@@ -18,6 +20,7 @@ dynamo = Dynamo()
 aws_auth = AWSCognitoAuthentication()
 cogauth = CognitoAuth()
 edits = Edits()
+
 
 def create_app(config_class=Config):
     application = Flask(__name__)

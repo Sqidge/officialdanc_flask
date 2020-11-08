@@ -33,7 +33,7 @@
                             <td>{{ev['link']}}</td>
                             <td>{{ev['on_the_door']}}</td>
                             <td>{{ev['sold_out']}}</td>
-                            <td><a href="{{url_for('auth.edit_event', id=ev.id)}}" class="btn btn-dark">Edit</a></td>
+                            <td><a class="btn btn-dark" href="{{url_for('auth.edit_event', id=ev.id)}}">Edit</a></td>
                         </tr>
                         {% endfor %}
                         </tbody>
@@ -42,7 +42,7 @@
                     {% for category, message in get_flashed_messages(with_categories=True) %}
                     <div class="alert alert-{{category}}">{{message}}</div>
                     {% endfor %}
-                    <a href="/auth/new_event" class="btn btn-dark">New Event</a>
+                    <a class="btn btn-dark" href="/auth/new_event">New Event</a>
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@
                     Editable Content
                 </h3>
                 <div class="card-body">
-                    <a href="/auth/edits" class="btn btn-dark">Edit Content here.</a>
+                    <a class="btn btn-dark" href="/auth/edits">Edit Content here.</a>
                 </div>
             </div>
         </div>

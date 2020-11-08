@@ -2,15 +2,15 @@ import datetime
 import json
 import os
 
-import requests
 from boto3.dynamodb.conditions import Key
-from flask import render_template, send_from_directory, request
-from app.main import bp
 from flask import current_app
+from flask import render_template, send_from_directory, request
+
+from app.main import bp
 
 EDITS = {}
 try:
-    with open(os.path.join(current_app.config['APP_STATIC'],'edits', 'edits.json')) as f:
+    with open(os.path.join(current_app.config['APP_STATIC'], 'edits', 'edits.json')) as f:
         EDITS = json.loads(f.read())
 except Exception as e:
     pass
@@ -29,9 +29,11 @@ def get_events():
 def index():
     return render_template('index.html', title='Home', events=get_events(), banner=True)
 
+
 @bp.route('/privacy')
 def privacy():
     return render_template('privacy.html')
+
 
 @bp.route('/robots.txt')
 @bp.route('/sitemap.xml')
